@@ -28,8 +28,17 @@ public class Game {
             }
         } else 
         {
+        	if (pOne.getPoints() > 3 || pTwo.getPoints() > 3) 
+    		{
+                if (Math.abs(pTwo.getPoints() - pOne.getPoints()) >= 2) 
+                {
+                	return whoIsLeadingPlayer() + " is the winner";
+                }
+            }
+        	
         	return pOne.getName() +" : "+ pointsEquivalence.get(pOne.getPoints()) +
-        			" - "+ pTwo.getName() +" : "+ pointsEquivalence.get(pTwo.getPoints());        
+        			" - "+ pTwo.getName() +" : "+ pointsEquivalence.get(pTwo.getPoints());
+    		
         }
 	}
 
