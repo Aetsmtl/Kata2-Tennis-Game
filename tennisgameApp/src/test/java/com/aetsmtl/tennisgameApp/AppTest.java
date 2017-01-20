@@ -38,26 +38,100 @@ public class AppTest
     
     public void testCheckCorrectDescriptionOfScoreBeforeFourPoints()
     {
+    	Player firstPlayer = new Player("Arnold");
+    	Player secondPlayer = new Player("Fotsing");
     	
+    	Game g = new Game(firstPlayer, secondPlayer);
+    	
+    	String resultTemp;
+    	
+    	firstPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Arnold : fifteen - Fotsing : love");
+    	
+    	firstPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Arnold : thirty - Fotsing : love");
+    	
+    	firstPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Arnold : forty - Fotsing : love");
     }
     
     public void testCheckCorrectDescriptionOfScoreAfterThreePoints()
     {
+    	Player firstPlayer = new Player("Arnold");
+    	Player secondPlayer = new Player("Fotsing");
     	
+    	Game g = new Game(firstPlayer, secondPlayer);
+    	
+    	String resultTemp;
+    	
+    	for (int i=0 ; i<3 ; i++)
+    	{
+    		firstPlayer.winService();
+    		secondPlayer.winService();
+    	}
+    	
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "deuce");
+    	
+    	firstPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "advantage For : Arnold");
+    	
+    	secondPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "deuce");
+    	
+    	secondPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "advantage For : Fotsing");
+    	
+    	firstPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "deuce");
     }
     
-    public void testCheckScoreIsInAdvantage()
+    public void testCheckWinAfterDeuce()
     {
+    	Player firstPlayer = new Player("Arnold");
+    	Player secondPlayer = new Player("Fotsing");
     	
+    	Game g = new Game(firstPlayer, secondPlayer);
+    	
+    	String resultTemp;
+    	
+    	for (int i=0 ; i<3 ; i++)
+    	{
+    		firstPlayer.winService();
+    		secondPlayer.winService();
+    	}
+    	
+    	secondPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Advantage For : Fotsing");
+    	
+    	secondPlayer.winService();
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Fotsing is the winner");
     }
     
-    public void testCheckScoreIsInDeuce()
+    public void testCheckWinWithoutDeuce()
     {
+    	Player firstPlayer = new Player("Arnold");
+    	Player secondPlayer = new Player("Fotsing");
     	
-    }
-    
-    public void testCheckWin()
-    {
+    	Game g = new Game(firstPlayer, secondPlayer);
     	
+    	String resultTemp;
+    	
+    	for (int i=0 ; i<3 ; i++)
+    	{
+    		firstPlayer.winService();
+    	}
+    	
+    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	assertEquals(resultTemp , "Arnold is the winner");
     }
 }
