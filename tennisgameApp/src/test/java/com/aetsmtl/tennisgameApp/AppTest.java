@@ -110,7 +110,7 @@ public class AppTest
     	
     	secondPlayer.winService();
     	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
-    	assertEquals(resultTemp , "Advantage For : Fotsing");
+    	assertEquals(resultTemp , "advantage For : Fotsing");
     	
     	secondPlayer.winService();
     	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
@@ -131,6 +131,7 @@ public class AppTest
     		firstPlayer.winService();
     	}
     	
+    	firstPlayer.winService();
     	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Arnold is the winner");
     }
