@@ -35,4 +35,29 @@ public class AppTest
     {
         assertTrue( true );
     }
+    
+    public void testCheckCorrectDescriptionOfScoreBeforeFourPoints()
+    {
+    	
+    }
+    
+    public void testCheckCorrectDescriptionOfScoreAfterThreePoints()
+    {
+    	
+    }
+    
+    public void testCheckScoreIsInAdvantage()
+    {
+    	
+    }
+    
+    public void testCheckScoreIsInDeuce()
+    {
+    	
+    }
+    
+    public void testCheckWin()
+    {
+    	
+    }
 }
