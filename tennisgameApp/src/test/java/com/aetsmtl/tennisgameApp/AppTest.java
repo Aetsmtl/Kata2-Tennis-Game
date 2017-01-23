@@ -10,6 +10,9 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
+	Player firstPlayer, secondPlayer;
+    Game game;
+	
     /**
      * Create the test case
      *
@@ -27,44 +30,36 @@ public class AppTest
     {
         return new TestSuite( AppTest.class );
     }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    
+    @Override
+    protected void setUp() throws Exception {
+    	// TODO Auto-generated method stub
+    	super.setUp();
+    	
+    	firstPlayer = new Player("Arnold");
+    	secondPlayer = new Player("Fotsing");
+    	game = new Game(firstPlayer, secondPlayer);
     }
     
-    public void testCheckCorrectDescriptionOfScoreBeforeFourPoints()
-    {
-    	Player firstPlayer = new Player("Arnold");
-    	Player secondPlayer = new Player("Fotsing");
-    	
-    	Game g = new Game(firstPlayer, secondPlayer);
-    	
+    public void testCorrectDescriptionOfScoreBeforeFourPoints()
+    {	
     	String resultTemp;
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Arnold : fifteen - Fotsing : love");
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Arnold : thirty - Fotsing : love");
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Arnold : forty - Fotsing : love");
     }
     
-    public void testCheckCorrectDescriptionOfScoreAfterThreePoints()
+    public void testCorrectDescriptionOfScoreAfterThreePoints()
     {
-    	Player firstPlayer = new Player("Arnold");
-    	Player secondPlayer = new Player("Fotsing");
-    	
-    	Game g = new Game(firstPlayer, secondPlayer);
-    	
     	String resultTemp;
     	
     	for (int i=0 ; i<3 ; i++)
@@ -73,33 +68,28 @@ public class AppTest
     		secondPlayer.winService();
     	}
     	
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "deuce");
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "advantage For : Arnold");
     	
     	secondPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "deuce");
     	
     	secondPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "advantage For : Fotsing");
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "deuce");
     }
     
-    public void testCheckWinAfterDeuce()
+    public void testWinAfterDeuce()
     {
-    	Player firstPlayer = new Player("Arnold");
-    	Player secondPlayer = new Player("Fotsing");
-    	
-    	Game g = new Game(firstPlayer, secondPlayer);
-    	
     	String resultTemp;
     	
     	for (int i=0 ; i<3 ; i++)
@@ -109,30 +99,25 @@ public class AppTest
     	}
     	
     	secondPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "advantage For : Fotsing");
     	
     	secondPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Fotsing is the winner");
     }
     
-    public void testCheckWinWithoutDeuce()
+    public void testWinWithoutDeuce()
     {
-    	Player firstPlayer = new Player("Arnold");
-    	Player secondPlayer = new Player("Fotsing");
-    	
-    	Game g = new Game(firstPlayer, secondPlayer);
-    	
     	String resultTemp;
     	
     	for (int i=0 ; i<3 ; i++)
     	{
-    		firstPlayer.winService();
+    		firstPlayer.winService(); 
     	}
     	
     	firstPlayer.winService();
-    	resultTemp = g.giveCurrentlyResult(firstPlayer, secondPlayer);
+    	resultTemp = game.giveCurrentlyResult(firstPlayer, secondPlayer);
     	assertEquals(resultTemp , "Arnold is the winner");
     }
 }

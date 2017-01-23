@@ -18,28 +18,38 @@ public class Game {
 	{
 		if (pOne.getPoints() >= 3 && pTwo.getPoints() >= 3) 
 		{
-            if (Math.abs(pTwo.getPoints() - pOne.getPoints()) >= 2) 
-            {
-                return whoIsLeadingPlayer() + " is the winner";
-            } else if (pTwo.getPoints() == pOne.getPoints()) {
-                return "deuce";
-            } else {
-                return "advantage For : " + whoIsLeadingPlayer();
-            }
+            return equalsAfterThreePoint(pOne, pTwo);
         } else 
         {
-        	if (pOne.getPoints() > 3 || pTwo.getPoints() > 3) 
-    		{
-                if (Math.abs(pTwo.getPoints() - pOne.getPoints()) >= 2) 
-                {
-                	return whoIsLeadingPlayer() + " is the winner";
-                }
-            }
-        	
-        	return pOne.getName() +" : "+ pointsEquivalence.get(pOne.getPoints()) +
-        			" - "+ pTwo.getName() +" : "+ pointsEquivalence.get(pTwo.getPoints());
+        	return oneScoreIsGraterThanThreePoints(pOne, pTwo);
     		
         }
+	}
+
+	private String oneScoreIsGraterThanThreePoints(Player pOne, Player pTwo) 
+	{
+		if (pOne.getPoints() > 3 || pTwo.getPoints() > 3) 
+		{
+		    if (Math.abs(pTwo.getPoints() - pOne.getPoints()) >= 2) 
+		    {
+		    	return whoIsLeadingPlayer() + " is the winner";
+		    }
+		}
+		
+		return pOne.getName() +" : "+ pointsEquivalence.get(pOne.getPoints()) +
+				" - "+ pTwo.getName() +" : "+ pointsEquivalence.get(pTwo.getPoints());
+	}
+
+	private String equalsAfterThreePoint(Player pOne, Player pTwo) 
+	{
+		if (Math.abs(pTwo.getPoints() - pOne.getPoints()) >= 2) 
+		{
+		    return whoIsLeadingPlayer() + " is the winner";
+		} else if (pTwo.getPoints() == pOne.getPoints()) {
+		    return "deuce";
+		} else {
+		    return "advantage For : " + whoIsLeadingPlayer();
+		}
 	}
 
 	private String whoIsLeadingPlayer()
